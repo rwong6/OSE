@@ -6,6 +6,7 @@ import javax.swing.* ;
 
 import fr.mertzel.ose.modele.Orientation;
 import fr.mertzel.ose.modele.PlanSalle;
+import fr.mertzel.ose.modele.PlanSalle.Poste;
 import fr.mertzel.ose.modele.Position;
 
 import java.awt.event.* ;
@@ -233,7 +234,7 @@ public class FenetrePrincipale extends JFrame {
 		 */
 		private void placerPostes(Graphics2D g){
 			g.setStroke(new BasicStroke()) ;
-			for(fr.mertzel.ose.modele.Poste poste : modele.listerPostes()){
+			for(Poste poste : modele.listerPostes()){
 				g.setColor(Color.gray) ;
 				int xPoste = Parametres.posteX(poste.getPosition().getTravee(),poste.getOrientation()) ;
 				int yPoste = Parametres.posteY(poste.getPosition().getRangee(),poste.getOrientation()) ;
@@ -264,10 +265,10 @@ public class FenetrePrincipale extends JFrame {
 			BasicStroke pointilles = new BasicStroke(1,BasicStroke.CAP_BUTT,BasicStroke.JOIN_ROUND,1.0f,dash,2f) ;
 			g.setStroke(pointilles) ;
 			g.setColor(Color.red) ;
-			for(fr.mertzel.ose.modele.Poste poste : modele.listerPostes()){
+			for(Poste poste : modele.listerPostes()){
 				int centreX = Parametres.centrePersonneX(poste.getPosition().getTravee(),poste.getOrientation()) ;
 				int centreY = Parametres.centrePersonneY(poste.getPosition().getRangee(),poste.getOrientation()) ;
-				for(fr.mertzel.ose.modele.Poste posteVisible : poste.getPostesVisibles()){
+				for(Poste posteVisible : poste.getPostesVisibles()){
 					int visibleX = Parametres.centrePositionX(posteVisible.getPosition().getTravee()) ;
 					int visibleY = Parametres.centrePositionY(posteVisible.getPosition().getRangee()) ;
 					g.drawLine(centreX,centreY,visibleX,visibleY) ;
@@ -276,4 +277,6 @@ public class FenetrePrincipale extends JFrame {
 		}
 		
 	}
+
 }
+
